@@ -1,7 +1,8 @@
-#!bin/sh
+#!/bin/bash
 #cd Downloads/grading/
-#javac DigitsInANumber.java
-javac $1
+#cd /afs/cs.wisc.edu/u/a/p/aparnasubr/Downloads/summer-grading/trial/Grades
+javac DigitsInANumber.java
+#javac $1
 java DigitsInANumber < <(printf "3\r")
 java DigitsInANumber < <(printf "99\r")
 java DigitsInANumber < <(printf "123\r")
