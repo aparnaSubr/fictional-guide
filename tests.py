@@ -28,17 +28,18 @@ else:
 listOfFiles = os.listdir(sys.argv[1])
 for filename in listOfFiles:
 	print "Compiling submission for {0}".format(filename)
-	completeFilename = sys.argv[1] + filename
+	completeFilename = os.path.join(sys.argv[1], filename)
 	#print completeFilename
 	#command = "cp " + completeFilename + " DigitsInANumber.java"
 	#print command
 	#print shlex.split(command)
 	#status = call(shlex.split(command), shell=True)
 	#status = call(command, shell=True)
-	destination = sys.argv[1] + "Grades/DigitsInANumber.java"
+	destination = os.path.join(sys.argv[1], "Grades/DigitsInANumber.java")
 	shutil.copyfile(completeFilename, destination)
-	command = "./script.sh > " + filename + ".txt"
+	command = "./script.sh " + destination + " >> " + os.path.join(sys.argv[1], "Grades", (filename + ".txt"))
 	print command
+	sys.exit(0)
 	#status = call(["./script.sh", ">", (filename + ".txt")], shell=True)
 	status = call(command, shell=True)
 	if status != 0:
