@@ -1,3 +1,11 @@
+###################################################################################
+###################################################################################
+###
+###	Filenames are replaced with <LastName><FirstName>
+###
+###################################################################################
+###################################################################################
+
 import os
 import sys
 
@@ -11,9 +19,14 @@ path = sys.argv[1]
 listOfFiles = os.listdir(path)
 #os.chdir(sys.argv[1])
 
-for f in listOfFiles:
-	print f
-	f = path + "/" + f
-	os.rename(f, f.replace(" ",""))
+countOfFiles = 0
+for filename in listOfFiles:
+	print filename
+	new_filename = filename.replace(" ","").split("-")[2]
+	new_filename = path + "/" + new_filename
+	filename = path + "/" + filename
+	os.rename(filename, new_filename)
+	countOfFiles += 1
 
-print "\n\nDone.\n"
+print "\n\n{0} files renamed.".format(countOfFiles)
+print "Done.\n"
