@@ -18,7 +18,7 @@ for i in files:
 		#status = call(command, shell=True)
 		command = "bash " + os.path.join(sys.argv[1], sys.argv[2], 'script.sh')
 		#command = command + " >> " + os.path.join('/u/a/p/aparnasubr/Downloads/summer-grading/trial/Grades', (i+'.txt'))
-		destination = os.path.join(sys.argv[1]. sys.argv[2], i)
+		destination = os.path.join(sys.argv[1], sys.argv[2], i)
 		destination = destination + ".txt"
 		with open(destination, 'w') as dst:
 			status = call(command, shell=True, stdout=dst)
