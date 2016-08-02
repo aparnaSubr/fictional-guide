@@ -1,4 +1,4 @@
-# !bin/bash
+#!bin/bash
 
 
 # Arg 1: Directory of submitted source files
