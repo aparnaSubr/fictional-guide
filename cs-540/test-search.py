@@ -126,12 +126,13 @@ def test_dfs(dfs_output, test_case_num):
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def main():
-    total_points = 100
+    total_points = 95
     
     cwd = os.getcwd()
     list_of_files = os.listdir(cwd)
     
     compiled_success = False
+    submitted_filename = sys.argv[1]
     
     # 5 points for submitting code
     # Do not deduct 
@@ -140,10 +141,8 @@ def main():
     if not 'Search.java' in list_of_files and not 'Search.class' in list_of_files:
         print('Could not find Search.java : -5 points' + os.linesep)
         total_points -= 5
-        sys.exit(0)
     
     # 5 points for compiling without errors
-    print('Compiling java files...')
     try:
         command = 'javac *.java'
         output = check_call(command, shell=True)
@@ -153,12 +152,9 @@ def main():
         total_points -= 5
         print('Compilation failed : -5 points')
         
-    # 5 points for reading command line arguments
-    print('Checking command line arguments...')
-
     # 10 points for sample BFS
     if compiled_success is True:
-        command = 'java Search 3 2 2'
+        command = 'java ' + submitted_filename + ' 3 2 2'
         output = check_output(command, shell=True)
         bfs_output = output.split('DFS')[0]
         if sample_bfs(bfs_output) is True:
@@ -169,11 +165,11 @@ def main():
 
     else:
         total_points -= 10
-        print('Could not run submitted program.')
+        print('Could not test sample BFS run.')
 
     # 10 points for sample DFS
     if compiled_success is True:
-        command = 'java Search 3 2 2'
+        command = 'java ' + submitted_filename + ' 3 2 2'
         output = check_output(command, shell=True)
         dfs_output = 'DFS' + output.split('DFS')[1]
         if sample_dfs(dfs_output) is True:
@@ -183,13 +179,13 @@ def main():
             print('Sample DFS run failed : -10 points' + os.linesep)
     else:
         total_points -= 10
-        print('Could not run submitted program.' + os.linesep)
+        print('Could not test sample DFS run.' + os.linesep)
 
     # 6 test cases, 10 points each
     commands = ['1 0 1', '2 2 2', '2 1 1', '4 2 3', '6 2 5', '7 9 3']
     if compiled_success is True:
         for i in range(6):
-            command = 'java Search ' + commands[i]
+            command = 'java ' + submitted_filename + ' ' + commands[i]
             output = check_output(command, shell=True)
             bfs_output = output.split('DFS')[0]
             if test_bfs(bfs_output, i) is True:
@@ -209,6 +205,8 @@ def main():
         print('Could not run submitted program.' + os.linesep)
 
     print('TOTAL POINTS : {0}'.format(total_points))
+    # 5 points for reading command line arguments
+    print('Checking command line arguments...')
 
 if __name__ == '__main__':
     main()

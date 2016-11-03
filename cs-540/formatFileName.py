@@ -9,7 +9,7 @@
 
 import os
 import sys
-from shutil import move
+from shutil import move, copyfile
 import zipfile
 
 if len(sys.argv)!=2:
@@ -26,6 +26,7 @@ for filename in list_of_files:
     new_dir_name = filename.split(' - ')[1]
     if not os.path.exists(os.path.join(path, new_dir_name)):
         os.makedirs(os.path.join(path, new_dir_name))
+        copyfile('test-search.py', os.path.join(path, new_dir_name, 'test-search.py'))
 
     new_filename = filename.split(' - ')[-1]
     filename = os.path.join(path, filename)
