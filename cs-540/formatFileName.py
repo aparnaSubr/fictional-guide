@@ -2,6 +2,7 @@
 ###################################################################################
 ###
 ###	Filenames are moved to a directory named <LastName> <FirstName>
+### Zip files are unzipped into the directory named <LastName> <FirstName>
 ###
 ###################################################################################
 ###################################################################################
@@ -9,6 +10,7 @@
 import os
 import sys
 from shutil import move
+import zipfile
 
 if len(sys.argv)!=2:
     print('Usage: python formatFileName.py <directory>')
@@ -29,4 +31,9 @@ for filename in list_of_files:
     filename = os.path.join(path, filename)
     os.rename(filename, new_filename)
     move(new_filename, os.path.join(path, new_dir_name))
+
+    if new_filename.endswith('.zip'):
+        zip_ref = zipfile.ZipFile(os.path.join(path, new_dir_name, new_filename))
+        zip_ref.extractall(os.path.join(path, new_dir_name))
+        zip_ref.close()
 print "Done.\n"
