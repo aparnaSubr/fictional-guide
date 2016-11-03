@@ -85,6 +85,8 @@ def test_bfs(bfs_output, test_case_num):
                     print(os.linesep)
                     print('Got :' + os.linesep)
                     print(os.linesep.join(got))
+                    return False
+            return True
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def test_dfs(dfs_output, test_case_num):
@@ -184,7 +186,7 @@ def main():
         print('Could not run submitted program.' + os.linesep)
 
     # 6 test cases, 10 points each
-    commands = ['1 0 1', '2 2 2', '2 1 1', '4 2 3', '6 2 5', '17 9 3']
+    commands = ['1 0 1', '2 2 2', '2 1 1', '4 2 3', '6 2 5', '7 9 3']
     if compiled_success is True:
         for i in range(6):
             command = 'java Search ' + commands[i]

@@ -11,15 +11,15 @@ import sys
 from shutil import move
 
 if len(sys.argv)!=2:
-    print "Usage: python formatFileName.py <directory>"
-    sys.exit(1)
+    print('Usage: python formatFileName.py <directory>')
+    sys.exit(0)
 
-print "\n\nFormatting file names...\n"
+print('\n\nFormatting file names...\n')
 
 path = sys.argv[1]
-listOfFiles = os.listdir(path)
+list_of_files = os.listdir(path)
 
-for filename in listOfFiles:
+for filename in list_of_files:
     print(filename)
     new_dir_name = filename.split(' - ')[1]
     if not os.path.exists(os.path.join(path, new_dir_name)):
